@@ -7,12 +7,14 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { EventosComponent } from './eventos/eventos.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    EventosComponent
+    EventosComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
