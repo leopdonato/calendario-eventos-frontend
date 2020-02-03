@@ -1,1 +1,38 @@
 <app-header></app-header>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <button type="button" class="btn btn-success btn-block btn-sm" data-toggle="modal" data-target="#cadastrarEvento">
+                <i class="far fa-calendar-plus fa-2x mr-2"></i> Adicionar um novo evento
+            </button>
+            <div *ngIf="isEmpty===false; else mostrarVazio">
+                <table class="table table-striped table-info">
+                    <thead>
+                        <tr>
+                            <th scope="col">Descrição</th>
+                            <th scope="col">Data Início</th>
+                            <th scope="col">Data Término</th>
+                            <th scope="col">Horário Início</th>
+                            <th scope="col">Horário Término</th>
+                            <th scope="col">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let evento of listaEventos">
+                            <th scope="row">{{ evento.descricao }}</th>
+                            <td>{{ evento.dataInicio }}</td>
+                            <td>{{ evento.dataTermino }}</td>
+                            <td>{{ evento.horarioInicio }}</td>
+                            <td>{{ evento.horarioTermino }}</td>
+                            <td><i class="far fa-edit mr-3"></i><i class="far fa-calendar-times" (click)="deletar(evento.id)"></i></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <ng-template #mostrarVazio>
+                <h2>Sem Eventos!!!</h2>
+            </ng-template>
+            <app-cadastrar-evento></app-cadastrar-evento>
+        </div>
+    </div>
+</div>

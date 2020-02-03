@@ -8,13 +8,17 @@ import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { EventosComponent } from './eventos/eventos.component';
 import { HeaderComponent } from './header/header.component';
+import { AuthService } from './services/auth.service';
+import { EventosService } from './services/eventos.service';
+import { CadastrarEventoComponent } from './cadastrar-evento/cadastrar-evento.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     EventosComponent,
-    HeaderComponent
+    HeaderComponent,
+    CadastrarEventoComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +27,10 @@ import { HeaderComponent } from './header/header.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    EventosService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
