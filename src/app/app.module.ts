@@ -12,6 +12,8 @@ import { AuthService } from './services/auth.service';
 import { EventosService } from './services/eventos.service';
 import { CadastrarEventoComponent } from './cadastrar-evento/cadastrar-evento.component';
 
+import {NgxPaginationModule} from 'ngx-pagination';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +27,8 @@ import { CadastrarEventoComponent } from './cadastrar-evento/cadastrar-evento.co
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPaginationModule
   ],
   providers: [
     AuthService,

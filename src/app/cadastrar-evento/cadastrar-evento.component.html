@@ -7,39 +7,49 @@
             <span aria-hidden="true">&times;</span>
           </button>
             </div>
-            <form [formGroup]="formCadastroEvento" (ngSubmit)="cadastrarEvento()">
-                <div class="modal-body">
-                    <div class="form-group row">
-                        <div class="col-12">
-                            <label for="descricao">Descrição</label>
-                            <input type="text" class="form-control" id="descricao" formControlName="descricao">
+            <ng-container *ngIf="isSuccesful===false; else succesful">
+                <form [formGroup]="formCadastroEvento" (ngSubmit)="cadastrarEvento()">
+                    <div class="modal-body">
+                        <div class="form-group row">
+                            <div class="col-12">
+                                <label for="descricao">Descrição</label>
+                                <input type="text" class="form-control" id="descricao" formControlName="descricao">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-6">
+                                <label for="dataInicio">Data início</label>
+                                <input type="date" class="form-control" id="dataInicio" formControlName="dataInicio">
+                            </div>
+                            <div class="col-6">
+                                <label for="dataTermino">Data término</label>
+                                <input type="date" class="form-control" id="dataTermino" formControlName="dataTermino">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-6">
+                                <label for="horarioInicio">Horário início</label>
+                                <input type="time" class="form-control" id="horarioInicio" formControlName="horarioInicio">
+                            </div>
+                            <div class="col-6">
+                                <label for="horarioTermino">Horário término</label>
+                                <input type="time" class="form-control" id="horarioTermino" formControlName="horarioTermino">
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <div class="col-6">
-                            <label for="dataInicio">Data início</label>
-                            <input type="date" class="form-control" id="dataInicio" formControlName="dataInicio">
-                        </div>
-                        <div class="col-6">
-                            <label for="dataTermino">Data término</label>
-                            <input type="date" class="form-control" id="dataTermino" formControlName="dataTermino">
-                        </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" [disabled]="formCadastroEvento.invalid">Cadastrar</button>
                     </div>
-                    <div class="form-group row">
-                        <div class="col-6">
-                            <label for="horarioInicio">Horário início</label>
-                            <input type="time" class="form-control" id="horarioInicio" formControlName="horarioInicio">
-                        </div>
-                        <div class="col-6">
-                            <label for="horarioTermino">Horário término</label>
-                            <input type="time" class="form-control" id="horarioTermino" formControlName="horarioTermino">
-                        </div>
-                    </div>
+                </form>
+            </ng-container>
+            <ng-template #succesful>
+                <div class="alert alert-success" role="alert">
+                    <h4 class="alert-heading">Evento cadastrado com sucesso!</h4>
+                    <p>Obrigado por compartilhar mais um evento conosco!</p>
+                    <hr>
+                    <p class="mb-0">4FUN</p>
                 </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" [disabled]="formCadastroEvento.invalid">Enviar</button>
-                </div>
-            </form>
+            </ng-template>
         </div>
     </div>
 </div>

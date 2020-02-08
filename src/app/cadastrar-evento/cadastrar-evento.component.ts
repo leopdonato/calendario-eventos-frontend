@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { EventosModel } from '../models/eventos.model';
 import { EventosService } from '../services/eventos.service';
+import { EventosComponent } from '../eventos/eventos.component';
 
 @Component({
   selector: 'app-cadastrar-evento',
@@ -14,12 +15,17 @@ export class CadastrarEventoComponent implements OnInit {
 
   public eventos: EventosModel;
 
-  @ViewChild('closeModal', {static: false}) closeModal: ElementRef;
+  public isSuccesful: boolean = false;
 
-  constructor(private fb: FormBuilder,
-    private eventosService: EventosService) {
-    
-   }
+  @ViewChild('closeModal', { static: false }) closeModal: ElementRef;
+
+  constructor(
+    private fb: FormBuilder,
+    private eventosService: EventosService,
+    private eventosComponent: EventosComponent
+    ) {
+
+  }
 
   ngOnInit() {
     this.formCadastroEvento = this.fb.group({
@@ -31,21 +37,26 @@ export class CadastrarEventoComponent implements OnInit {
     });
   }
 
-  cadastrarEvento(){
+  cadastrarEvento() {
     this.eventos = this.formCadastroEvento.getRawValue();
-    const inicio = new Date (this.eventos.dataInicio).getUTCDate()+"/"+new Date(this.eventos.dataInicio).getMonth()+"/"+new Date(this.eventos.dataInicio).getFullYear();
-    const fim = new Date (this.eventos.dataTermino).getUTCDate()+"/"+new Date(this.eventos.dataTermino).getMonth()+"/"+new Date(this.eventos.dataTermino).getFullYear();
+    const inicio = new Date(this.eventos.dataInicio).getUTCDate() + "/" + (new Date(this.eventos.dataInicio).getUTCMonth() + 1) + "/" + new Date(this.eventos.dataInicio).getFullYear();
+    const fim = new Date(this.eventos.dataTermino).getUTCDate() + "/" + (new Date(this.eventos.dataTermino).getUTCMonth() + 1) + "/" + new Date(this.eventos.dataTermino).getFullYear();
     this.eventos.dataInicio = inicio;
     this.eventos.dataTermino = fim;
     this.eventosService.insert(this.eventos)
       .subscribe(response => {
         this.formCadastroEvento.reset();
-        alert('Evento cadastrado com sucesso!');
-        this.closeModal.nativeElement.click();
+        this.isSuccesful = true;
+        setTimeout(response => {
+          this.closeModal.nativeElement.click();
+          this.eventosComponent.listarEventos();
+          this.isSuccesful = false;
+        }, 4000)
       },
-      error => {
-        console.log(error.message);
-      }
+        error => {
+          alert('Erro ao cadastrar evento, tente novamente mais tarde - ' + error.message);
+          this.formCadastroEvento.reset();
+        }
       );
   }
 

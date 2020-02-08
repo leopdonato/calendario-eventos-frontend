@@ -11,35 +11,37 @@ export class EventosComponent implements OnInit {
 
   public listaEventos: EventosModel[];
 
-  public isEmpty: boolean;
+  public isEmpty: boolean = true;
+
+  public p: number = 1;
 
   constructor(private eventosService: EventosService) { }
 
   ngOnInit() {
     this.listarEventos();
   }
-
+  
   listarEventos(){
     this.eventosService.findAll()
       .subscribe(response => {
         this.listaEventos = response;
-        this.isEmpty = false;
+        this.isEmpty = this.listaEventos.length < 1
       },
-      error => {
-        console.log(error.message);
-        this.isEmpty = true;
-      }
+        error => {
+          console.log(error.message);
+        }
       );
   }
 
-  deletar(id:string){
+  deletar(id: string) {
     this.eventosService.delete(id)
-    .subscribe(respose => {
-      this.listarEventos();
-    },
-    error => {
-      console.log(error.message);
-    })
+      .subscribe(respose => {
+        this.listarEventos();
+      },
+        error => {
+          console.log(error.message);
+        })
   }
+
 
 }
