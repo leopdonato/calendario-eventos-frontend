@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { EventosService } from '../services/eventos.service';
 import { EventosModel } from '../models/eventos.model';
 
@@ -14,6 +14,10 @@ export class EventosComponent implements OnInit {
   public isEmpty: boolean = true;
 
   public p: number = 1;
+
+  public idEvento: number;
+
+  @ViewChild('excluirComponent', { static: false }) excluirComponent: any;
 
   constructor(private eventosService: EventosService) { }
 
@@ -33,15 +37,8 @@ export class EventosComponent implements OnInit {
       );
   }
 
-  deletar(id: string) {
-    this.eventosService.delete(id)
-      .subscribe(respose => {
-        this.listarEventos();
-      },
-        error => {
-          console.log(error.message);
-        })
+  excluirEventos(){
+    this.excluirComponent.eventoById(this.idEvento);
   }
-
 
 }

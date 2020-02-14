@@ -29,12 +29,16 @@ export class EventosService {
     return this.http.get<EventosModel[]>('http://localhost:8080/eventos', this.httpOptions);
   }
 
-  insert(obj: EventosModel): Observable<any> {
-    return this.http.post('http://localhost:8080/eventos', obj, this.httpOptions);
+  insert(obj: EventosModel): Observable<EventosModel> {
+    return this.http.post<EventosModel>('http://localhost:8080/eventos', obj, this.httpOptions);
   }
 
-  delete(id: string): Observable<any> {
-    return this.http.delete(`http://localhost:8080/eventos/${id}`, this.httpOptions);
+  delete(id: number): Observable<EventosModel> {
+    return this.http.delete<EventosModel>(`http://localhost:8080/eventos/${id}`, this.httpOptions);
+  }
+  
+  findById(id: number): Observable<EventosModel> {
+    return this.http.get<EventosModel>(`http://localhost:8080/eventos/${id}`, this.httpOptions);
   }
 
 }

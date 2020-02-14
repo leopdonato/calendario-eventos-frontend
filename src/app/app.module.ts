@@ -13,6 +13,7 @@ import { EventosService } from './services/eventos.service';
 import { CadastrarEventoComponent } from './cadastrar-evento/cadastrar-evento.component';
 
 import {NgxPaginationModule} from 'ngx-pagination';
+import { ExcluirEventoComponent } from './excluir-evento/excluir-evento.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
     LoginComponent,
     EventosComponent,
     HeaderComponent,
-    CadastrarEventoComponent
+    CadastrarEventoComponent,
+    ExcluirEventoComponent
   ],
   imports: [
     BrowserModule,

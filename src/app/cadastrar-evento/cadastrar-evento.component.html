@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="cadastrarEventoLabel">Cadastrar evento</h5>
+                <h5 class="modal-title" id="cadastrarEventoLabel" *ngIf="isSuccesful===false;">Cadastrar evento</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close" #closeModal>
             <span aria-hidden="true">&times;</span>
           </button>
@@ -38,7 +38,15 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary" [disabled]="formCadastroEvento.invalid">Cadastrar</button>
+                        <button *ngIf="changeButton===false; else changingButton" type="submit" class="btn btn-primary" [disabled]="formCadastroEvento.invalid">Cadastrar evento <i class="far fa-calendar-check ml-2"></i></button>
+                        <ng-template #changingButton>
+                            <button type="button" class="btn btn-primary" disabled>
+                                Cadastrar evento
+                                <div class="spinner-border text-light" role="status">
+                                    <span class="sr-only">Carregando...</span>
+                                  </div>
+                            </button>
+                        </ng-template>
                     </div>
                 </form>
             </ng-container>
@@ -47,7 +55,7 @@
                     <h4 class="alert-heading">Evento cadastrado com sucesso!</h4>
                     <p>Obrigado por compartilhar mais um evento conosco!</p>
                     <hr>
-                    <p class="mb-0">4FUN</p>
+                    <p class="mb-0"><i class="far fa-grin-tongue-wink fa-2x"></i></p>
                 </div>
             </ng-template>
         </div>

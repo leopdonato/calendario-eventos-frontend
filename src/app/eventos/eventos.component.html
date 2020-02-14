@@ -26,7 +26,7 @@
                             <td>{{ evento.horarioTermino }}</td>
                             <td>
                                 <i class="far fa-edit mr-2" data-toggle="tooltip" data-placement="top" title="Editar evento"></i>
-                                <i class="far fa-calendar-times" data-toggle="tooltip" data-placement="top" title="Apagar evento" (click)="deletar(evento.id)"></i>
+                                <i class="far fa-calendar-times" data-toggle="modal" data-target="#excluirEvento" data-placement="top" title="Apagar evento" (click)="idEvento = evento.id; excluirEventos()"></i>
                             </td>
                         </tr>
                     </tbody>
@@ -36,9 +36,16 @@
                 </div>
             </div>
             <ng-template #mostrarVazio>
-                <h2>Sem Eventos!!!</h2>
+                <div class="card text-white bg-info mb-3">
+                    <div class="card-header">Xiiii...<i class="far fa-frown fa-2x ml-2"></i></div>
+                    <div class="card-body">
+                        <h5 class="card-title">Ainda não há eventos cadastrados!</h5>
+                        <p class="card-text">Clique no botão acima e adicione um novo evento em seu calendário.</p>
+                    </div>
+                </div>
             </ng-template>
-            <app-cadastrar-evento></app-cadastrar-evento>
+            <app-cadastrar-evento (attEventos)="listarEventos()"></app-cadastrar-evento>
+            <app-excluir-evento #excluirComponent [idEvento]="idEvento" (attEventos)="listarEventos()"></app-excluir-evento>
         </div>
     </div>
 </div>

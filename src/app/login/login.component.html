@@ -16,6 +16,9 @@
                         </div>
                         <button type="submit" class="btn btn-primary" [disabled]="formLogin.invalid">Entrar</button>
                     </form>
+                    <div *ngIf="isInvalid === true" class="alert alert-danger" role="alert">
+                        Usuário ou senha incorretos!
+                    </div>
                 </div>
             </div>
         </div>

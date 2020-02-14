@@ -12,6 +12,8 @@ export class LoginComponent implements OnInit {
 
   public formLogin: FormGroup;
 
+  public isInvalid: boolean = false;
+
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -37,7 +39,10 @@ export class LoginComponent implements OnInit {
       err => {
         console.log(err);
         this.formLogin.reset();
-        alert('usuário ou senha incorretos');
+        this.isInvalid = true;
+        setTimeout(() => {
+          this.isInvalid = false
+        }, 4000);
       }
     )
   }

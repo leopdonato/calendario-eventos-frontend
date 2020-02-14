@@ -1,0 +1,44 @@
+<div class="modal fade" id="excluirEvento" tabindex="-1" role="dialog" aria-labelledby="excluirEventoLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <ng-container *ngIf="isCharging===false; else loading">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="excluirEventoLabel" *ngIf="isSuccesful===false;">Deseja realmente excluir o evento "<span class="text-evento">{{evento.descricao}}</span>"?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" #closeModal>
+            <span aria-hidden="true">&times;</span>
+          </button>
+                </div>
+                <ng-container *ngIf="isSuccesful===false; else succesful">
+                    <div class="modal-body">
+                        <button type="button" class="btn btn-danger btn-block" (click)="deletarEvento()">Confirmar exclusão</button>
+                        <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </ng-container>
+                <ng-template #succesful>
+                    <div class="alert alert-danger" role="alert">
+                        <h4 class="alert-heading">Evento excluído com sucesso!</h4>
+                        <p>Com evento ou sem evento, o que importa é você feliz!</p>
+                        <hr>
+                        <p class="mb-0"><i class="far fa-dizzy fa-2x"></i></p>
+                    </div>
+                </ng-template>
+                <div class="modal-footer">
+                </div>
+            </ng-container>
+            <ng-template #loading>
+                <div class="modal-header">
+                    <h5>Por favor, aguarde...</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="d-flex justify-content-center">
+                        <div class="spinner-border text-info" role="status">
+                            <span class="sr-only">Carregando...</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </ng-template>
+        </div>
+    </div>
+</div>
