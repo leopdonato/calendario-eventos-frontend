@@ -12,3 +12,12 @@
     text-decoration: underline;
     font-style: italic;
 }
+
+button.close {
+    font-size: 2rem;
+    color: red;
+}
+
+button.close:focus {
+    outline: 0px
+}

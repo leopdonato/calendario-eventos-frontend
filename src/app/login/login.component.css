@@ -11,6 +11,7 @@
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
     margin-left: auto;
     margin-right: auto;
+    transition: transform 0.7s;
 }
 
 .card-title {
@@ -20,7 +21,7 @@
 
 label {
     font-size: 1.2rem;
-    font-weight: lighter;
+    font-weight: bold;
 }
 
 hr {
@@ -49,6 +50,11 @@ hr {
 @media (min-width: 768px) {
     .card {
         width: 50%;
+    }
+    .card:focus,
+    .card:hover {
+        box-shadow: 0 0 0 99999px rgba(0, 0, 0, .8);
+        transform: scale(1.2);
     }
 }
 

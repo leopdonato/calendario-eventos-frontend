@@ -1,12 +1,12 @@
-<div class="modal fade" id="excluirEvento" tabindex="-1" role="dialog" aria-labelledby="excluirEventoLabel" aria-hidden="true">
+<div class="modal fade" id="excluirEvento" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="excluirEventoLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <ng-container *ngIf="isCharging===false; else loading">
                 <div class="modal-header">
                     <h5 class="modal-title" id="excluirEventoLabel" *ngIf="isSuccesful===false;">Deseja realmente excluir o evento "<span class="text-evento">{{evento.descricao}}</span>"?</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" #closeModal>
-            <span aria-hidden="true">&times;</span>
-          </button>
+                        <i class="fas fa-times-circle"></i>
+                    </button>
                 </div>
                 <ng-container *ngIf="isSuccesful===false; else succesful">
                     <div class="modal-body">

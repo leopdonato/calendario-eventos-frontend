@@ -41,4 +41,8 @@ export class EventosService {
     return this.http.get<EventosModel>(`http://localhost:8080/eventos/${id}`, this.httpOptions);
   }
 
+  edit(id: number, obj: EventosModel): Observable<EventosModel> {
+    return this.http.put<EventosModel>(`http://localhost:8080/eventos/${id}`, obj, this.httpOptions);
+  }
+
 }

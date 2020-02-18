@@ -19,6 +19,8 @@ export class EventosComponent implements OnInit {
 
   @ViewChild('excluirComponent', { static: false }) excluirComponent: any;
 
+  @ViewChild('alterarComponent', { static: false }) alterarComponent: any;
+
   constructor(private eventosService: EventosService) { }
 
   ngOnInit() {
@@ -39,6 +41,10 @@ export class EventosComponent implements OnInit {
 
   excluirEventos(){
     this.excluirComponent.eventoById(this.idEvento);
+  }
+
+  alterarEventos(){
+    this.alterarComponent.eventoById(this.idEvento);
   }
 
 }

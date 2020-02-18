@@ -1,14 +1,17 @@
-<div class="modal fade" id="cadastrarEvento" tabindex="-1" role="dialog" aria-labelledby="cadastrarEventoLabel" aria-hidden="true">
+<div class="modal fade" id="cadastrarEvento" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="cadastrarEventoLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="cadastrarEventoLabel" *ngIf="isSuccesful===false;">Cadastrar evento</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close" #closeModal>
-            <span aria-hidden="true">&times;</span>
-          </button>
+                <h5 class="modal-title" id="cadastrarEventoLabel" *ngIf="isSuccesful===false;">
+                    <span *ngIf="idEvento!==null && idEvento!==undefined; else cadastroTitle">Alterar evento</span>
+                    <ng-template #cadastroTitle>Cadastrar evento</ng-template>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" #closeModal (click)="formCadastroEvento.reset()">
+                    <i class="fas fa-times-circle"></i>
+                </button>
             </div>
             <ng-container *ngIf="isSuccesful===false; else succesful">
-                <form [formGroup]="formCadastroEvento" (ngSubmit)="cadastrarEvento()">
+                <form [formGroup]="formCadastroEvento" (ngSubmit)="cadastrarAlterarEvento()">
                     <div class="modal-body">
                         <div class="form-group row">
                             <div class="col-12">
@@ -17,32 +20,42 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-6">
+                            <div class="col-12 col-md-6">
                                 <label for="dataInicio">Data início</label>
                                 <input type="date" class="form-control" id="dataInicio" formControlName="dataInicio">
                             </div>
-                            <div class="col-6">
+                            <div class="col-12 col-md-6">
                                 <label for="dataTermino">Data término</label>
                                 <input type="date" class="form-control" id="dataTermino" formControlName="dataTermino">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-6">
+                            <div class="col-12 col-md-6">
                                 <label for="horarioInicio">Horário início</label>
                                 <input type="time" class="form-control" id="horarioInicio" formControlName="horarioInicio">
                             </div>
-                            <div class="col-6">
+                            <div class="col-12 col-md-6">
                                 <label for="horarioTermino">Horário término</label>
                                 <input type="time" class="form-control" id="horarioTermino" formControlName="horarioTermino">
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button *ngIf="changeButton===false; else changingButton" type="submit" class="btn btn-primary" [disabled]="formCadastroEvento.invalid">Cadastrar evento <i class="far fa-calendar-check ml-2"></i></button>
+                        <ng-container *ngIf="changeButton===false; else changingButton">
+                            <button type="submit" class="btn btn-primary" [disabled]="formCadastroEvento.invalid">
+                                <span *ngIf="idEvento!==null && idEvento!==undefined; else cadastroButton">Alterar Evento <i class="fas fa-sync-alt ml-2"></i></span>
+                                <ng-template #cadastroButton>Cadastrar evento <i class="far fa-calendar-check ml-2"></i></ng-template>
+                            </button>
+                        </ng-container>
                         <ng-template #changingButton>
                             <button type="button" class="btn btn-primary" disabled>
-                                Cadastrar evento
-                                <div class="spinner-border text-light" role="status">
+                                <span *ngIf="idEvento!==null && idEvento!==undefined; else changingCadastro">
+                                    Alterar Evento
+                                </span>
+                                <ng-template #changingCadastro>
+                                    Cadastrar evento
+                                </ng-template>
+                                <div class="spinner-border text-light spinner-border-sm" role="status">
                                     <span class="sr-only">Carregando...</span>
                                   </div>
                             </button>
@@ -52,8 +65,14 @@
             </ng-container>
             <ng-template #succesful>
                 <div class="alert alert-success" role="alert">
-                    <h4 class="alert-heading">Evento cadastrado com sucesso!</h4>
-                    <p>Obrigado por compartilhar mais um evento conosco!</p>
+                    <ng-container *ngIf="idEvento!==null && idEvento!==undefined; else succesfulCadastro">
+                        <h4 class="alert-heading">Evento alterado com sucesso!</h4>
+                        <p>Fique tranquilo! Seu evento já está atualizado!</p>
+                    </ng-container>
+                    <ng-template #succesfulCadastro>
+                        <h4 class="alert-heading">Evento cadastrado com sucesso!</h4>
+                        <p>Obrigado por compartilhar mais um evento conosco!</p>
+                    </ng-template>
                     <hr>
                     <p class="mb-0"><i class="far fa-grin-tongue-wink fa-2x"></i></p>
                 </div>
