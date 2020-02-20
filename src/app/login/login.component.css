@@ -19,11 +19,6 @@
     text-align: center;
 }
 
-label {
-    font-size: 1.2rem;
-    font-weight: bold;
-}
-
 hr {
     height: 2px;
     border: none;
@@ -38,13 +33,7 @@ hr {
     margin-left: auto;
     margin-right: auto;
     font-weight: bold;
-}
-
-@media (max-width: 768px) {
-    .btn {
-        width: 100%;
-        justify-content: center;
-    }
+    justify-content: center;
 }
 
 @media (min-width: 768px) {
@@ -60,4 +49,28 @@ hr {
 
 .alert {
     margin-top: 10px;
+    font-weight: bold;
+}
+
+.input-group-text {
+    background-color: white;
+    border-left: hidden;
+    border-bottom: 1px solid #ced4da;
+    cursor: pointer;
+    border-bottom-right-radius: 0.25rem !important;
+    border-top-right-radius: 0.25rem !important;
+}
+
+.input-group>.form-control {
+    border-right: hidden;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #ced4da;
+}
+
+label {
+    font-size: 1.2rem;
+    font-weight: 500;
 }
