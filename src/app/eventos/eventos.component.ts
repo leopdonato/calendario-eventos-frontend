@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { EventosService } from '../services/eventos.service';
 import { EventosModel } from '../models/eventos.model';
+import { faCalendarPlus, faCalendarTimes, faEdit } from '@fortawesome/free-regular-svg-icons';
+import { faCalendarDay } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-eventos',
@@ -17,12 +19,17 @@ export class EventosComponent implements OnInit {
 
   public idEvento: number;
 
+  public farCalendarPlus = faCalendarPlus;
+  public farCalendarTimes = faCalendarTimes;
+  public farEdit = faEdit;
+  public fasCalendarDay = faCalendarDay;
+
   @ViewChild('excluirComponent', { static: false }) excluirComponent: any;
 
   @ViewChild('alterarComponent', { static: false }) alterarComponent: any;
 
   constructor(private eventosService: EventosService) { }
-
+   
   ngOnInit() {
     this.listarEventos();
   }
@@ -31,7 +38,7 @@ export class EventosComponent implements OnInit {
     this.eventosService.findAll()
       .subscribe(response => {
         this.listaEventos = response;
-        this.isEmpty = this.listaEventos.length < 1
+        this.isEmpty = this.listaEventos.length < 1;
       },
         error => {
           console.log(error.message);

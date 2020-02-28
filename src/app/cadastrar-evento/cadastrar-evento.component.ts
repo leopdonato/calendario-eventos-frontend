@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter, Input, 
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { EventosModel } from '../models/eventos.model';
 import { EventosService } from '../services/eventos.service';
+import { faTimesCircle, faSyncAlt } from '@fortawesome/free-solid-svg-icons';
+import { faCalendarCheck, faGrinTongueWink } from '@fortawesome/free-regular-svg-icons';
 
 @Component({
   selector: 'app-cadastrar-evento',
@@ -16,6 +18,12 @@ export class CadastrarEventoComponent implements OnInit {
 
   public isSuccesful: boolean = false;
   public changeButton: boolean = false;
+
+  public fasTimesCircle = faTimesCircle;
+  public fasSyncAlt = faSyncAlt;
+  public farCalendarCheck = faCalendarCheck;
+  public farGrinTongueWink = faGrinTongueWink;
+
 
   @ViewChild('closeModal', { static: false }) closeModal: ElementRef;
   @ViewChild('exitModal', { static: false }) exitModal: ElementRef;

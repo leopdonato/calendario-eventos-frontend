@@ -14,3 +14,11 @@ button.close:focus {
 label {
     font-weight: bold;
 }
+
+fa-icon {
+    margin-right: 0px;
+}
+
+.modal-footer fa-icon {
+    margin-left: 5px;
+}

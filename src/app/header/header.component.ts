@@ -3,6 +3,8 @@ import { Observable } from 'rxjs';
 import { LoginModel } from '../models/login.model';
 import { LoginService } from '../services/login.service';
 import { Router } from '@angular/router';
+import { faCalendarAlt } from '@fortawesome/free-regular-svg-icons';
+import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-header',
@@ -11,8 +13,11 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  user$: Observable<LoginModel>;
+  public user$: Observable<LoginModel>;
   public user: LoginModel;
+
+  public farCalendarAlt = faCalendarAlt
+  public fasUserCircle = faUserCircle
 
   constructor(
     private loginService: LoginService,

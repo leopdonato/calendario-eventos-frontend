@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
 import { EventosService } from '../services/eventos.service';
 import { EventosModel } from '../models/eventos.model';
+import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+import { faDizzy } from '@fortawesome/free-regular-svg-icons';
 
 @Component({
   selector: 'app-excluir-evento',
@@ -21,6 +23,9 @@ export class ExcluirEventoComponent implements OnInit {
   public isCharging: boolean = true;
 
   @Output() public attEventos: EventEmitter<any> = new EventEmitter<any>();
+
+  public fasTimesCircle = faTimesCircle;
+  public farDizzy = faDizzy;
 
   constructor(
     private eventosService: EventosService

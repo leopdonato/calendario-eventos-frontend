@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +18,9 @@ export class LoginComponent implements OnInit {
   public changeEye: boolean = false;
 
   public changeButton: boolean = false;
+
+  public fasEye = faEye;
+  public fasEyeSlash = faEyeSlash;
 
   constructor(
     private fb: FormBuilder,
@@ -40,7 +44,7 @@ export class LoginComponent implements OnInit {
     .authenticate(email, senha)
     .subscribe(
       () => {
-        this.router.navigate(['eventos']);
+        this.router.navigate(['agendamentos']);
         this.changeButton = false;
       },
       err => {

@@ -7,7 +7,7 @@
                     <ng-template #cadastroTitle>Cadastrar evento</ng-template>
                 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close" #closeModal (click)="formCadastroEvento.reset()">
-                    <i class="fas fa-times-circle"></i>
+                    <fa-icon [icon]="fasTimesCircle"></fa-icon>
                 </button>
             </div>
             <ng-container *ngIf="isSuccesful===false; else succesful">
@@ -43,8 +43,8 @@
                     <div class="modal-footer">
                         <ng-container *ngIf="changeButton===false; else changingButton">
                             <button type="submit" class="btn btn-primary" [disabled]="formCadastroEvento.invalid">
-                                <span *ngIf="idEvento!==null && idEvento!==undefined; else cadastroButton">Alterar Evento <i class="fas fa-sync-alt ml-2"></i></span>
-                                <ng-template #cadastroButton>Cadastrar evento <i class="far fa-calendar-check ml-2"></i></ng-template>
+                                <span *ngIf="idEvento!==null && idEvento!==undefined; else cadastroButton">Alterar Evento <fa-icon [icon]="fasSyncAlt"></fa-icon></span>
+                                <ng-template #cadastroButton>Cadastrar evento <fa-icon [icon]="farCalendarCheck"></fa-icon></ng-template>
                             </button>
                         </ng-container>
                         <ng-template #changingButton>
@@ -74,7 +74,9 @@
                         <p>Obrigado por compartilhar mais um evento conosco!</p>
                     </ng-template>
                     <hr>
-                    <p class="mb-0"><i class="far fa-grin-tongue-wink fa-2x"></i></p>
+                    <p class="mb-0">
+                        <fa-icon [icon]="farGrinTongueWink" size="2x"></fa-icon>
+                    </p>
                 </div>
             </ng-template>
         </div>

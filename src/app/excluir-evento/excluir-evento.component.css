@@ -21,3 +21,7 @@ button.close {
 button.close:focus {
     outline: 0px
 }
+
+fa-icon {
+    margin-right: 0px;
+}

@@ -23,7 +23,6 @@ button {
     float: right;
 }
 
-.fa-edit,
-.fa-calendar-times {
+table fa-icon {
     cursor: pointer;
 }

@@ -1,40 +1,44 @@
-<app-header></app-header>
 <div class="container-fluid">
     <div class="row">
         <div class="col">
             <button type="button" class="btn btn-success btn-block btn-sm" data-toggle="modal" data-target="#cadastrarEvento" (click)="idEvento=null">
-                <i class="far fa-calendar-plus fa-2x mr-2"></i> Adicionar um novo evento
+                <fa-icon [icon]="farCalendarPlus" size="2x"></fa-icon> Adicionar um novo evento
             </button>
-            <div class="table-responsive" *ngIf="isEmpty===false; else mostrarVazio">
-                <table class="table table-striped table-info">
-                    <thead>
-                        <tr>
-                            <th scope="col">Descrição</th>
-                            <th scope="col">Data Início</th>
-                            <th scope="col">Data Término</th>
-                            <th scope="col">Horário Início</th>
-                            <th scope="col">Horário Término</th>
-                            <th scope="col">Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="select-line" *ngFor="let evento of listaEventos | paginate: { itemsPerPage: 5, currentPage: p }">
-                            <th scope="row">{{ evento.descricao }}</th>
-                            <td>{{ evento.dataInicio }}</td>
-                            <td>{{ evento.dataTermino }}</td>
-                            <td>{{ evento.horarioInicio }}</td>
-                            <td>{{ evento.horarioTermino }}</td>
-                            <td>
-                                <i class="far fa-edit mr-2" data-toggle="modal" data-target="#cadastrarEvento" data-placement="top" title="Editar evento" (click)="idEvento = evento.id; alterarEventos()"></i>
-                                <i class="far fa-calendar-times" data-toggle="modal" data-target="#excluirEvento" data-placement="top" title="Apagar evento" (click)="idEvento = evento.id; excluirEventos()"></i>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="paginacao">
-                    <pagination-controls (pageChange)="p = $event" responsive="true" previousLabel="Anterior" nextLabel="Próximo"></pagination-controls>
+            <ng-container *ngIf="isEmpty===false; else mostrarVazio">
+                <div class="table-responsive">
+                    <table class="table table-striped table-info">
+                        <thead>
+                            <tr>
+                                <th scope="col">Descrição</th>
+                                <th scope="col">Data Início</th>
+                                <th scope="col">Data Término</th>
+                                <th scope="col">Horário Início</th>
+                                <th scope="col">Horário Término</th>
+                                <th scope="col">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="select-line" *ngFor="let evento of listaEventos | paginate: { itemsPerPage: 5, currentPage: p }">
+                                <th scope="row">{{ evento.descricao }}</th>
+                                <td>{{ evento.dataInicio }}</td>
+                                <td>{{ evento.dataTermino }}</td>
+                                <td>{{ evento.horarioInicio }}</td>
+                                <td>{{ evento.horarioTermino }}</td>
+                                <td>
+                                    <fa-icon [icon]="farEdit" data-toggle="modal" data-target="#cadastrarEvento" data-placement="top" title="Editar evento" (click)="idEvento = evento.id; alterarEventos()"></fa-icon>
+                                    <fa-icon [icon]="farCalendarTimes" data-toggle="modal" data-target="#excluirEvento" data-placement="top" title="Apagar evento" (click)="idEvento = evento.id; excluirEventos()"></fa-icon>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="paginacao">
+                        <pagination-controls (pageChange)="p = $event" responsive="true" previousLabel="Anterior" nextLabel="Próximo"></pagination-controls>
+                    </div>
                 </div>
-            </div>
+                <button type="button" class="btn btn-info btn-block btn-sm" routerLink="/agendamentos/calendario">
+                    <fa-icon [icon]="fasCalendarDay" size="2x"></fa-icon> Visualizar calendário
+            </button>
+            </ng-container>
             <ng-template #mostrarVazio>
                 <div class="card text-white bg-info mb-3">
                     <div class="card-header">Xiiii...<i class="far fa-frown fa-2x ml-2"></i></div>
@@ -44,8 +48,8 @@
                     </div>
                 </div>
             </ng-template>
-            <app-cadastrar-evento #alterarComponent (attEventos)="listarEventos()" [idEvento]="idEvento"></app-cadastrar-evento>
-            <app-excluir-evento #excluirComponent [idEvento]="idEvento" (attEventos)="listarEventos()"></app-excluir-evento>
+            <app-cadastrar-evento #alterarComponent (attEventos)="listarEventos() " [idEvento]="idEvento "></app-cadastrar-evento>
+            <app-excluir-evento #excluirComponent [idEvento]="idEvento " (attEventos)="listarEventos() "></app-excluir-evento>
         </div>
     </div>
 </div>

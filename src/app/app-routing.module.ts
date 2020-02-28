@@ -4,11 +4,16 @@ import { LoginComponent } from './login/login.component';
 import { EventosComponent } from './eventos/eventos.component';
 import { AuthGuard } from './services/auth.guard';
 import { EventGuard } from './services/event.guard';
+import { CalendarioComponent } from './calendario/calendario.component';
 
 
 const routes: Routes = [
   { path: '', component: LoginComponent, canActivate: [AuthGuard]},
-  { path: 'eventos', component: EventosComponent, canActivate: [EventGuard]}
+  { path: 'agendamentos', canActivate: [EventGuard], children: [
+    {path: '', pathMatch: 'full', redirectTo: 'eventos'},
+    {path: 'eventos', component: EventosComponent},
+    {path: 'calendario', component: CalendarioComponent}
+  ]}
 ];
 
 @NgModule({
