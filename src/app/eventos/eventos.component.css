@@ -26,3 +26,7 @@ button {
 table fa-icon {
     cursor: pointer;
 }
+
+table fa-icon:nth-of-type(even) {
+    margin-right: 0px;
+}
