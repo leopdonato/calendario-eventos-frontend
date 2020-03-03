@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NgxMaskModule } from 'ngx-mask'
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -35,7 +36,8 @@ import { CalendarioComponent } from './calendario/calendario.component';
     HttpClientModule,
     NgxPaginationModule,
     FullCalendarModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    NgxMaskModule.forRoot()
   ],
   providers: [
     AuthService,

@@ -30,3 +30,8 @@ table fa-icon {
 table fa-icon:nth-of-type(even) {
     margin-right: 0px;
 }
+
+.card-header fa-icon {
+    margin-right: 0px;
+    margin-left: 8px;
+}

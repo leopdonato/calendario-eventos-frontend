@@ -1,12 +1,20 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col">
-            <button type="button" class="btn btn-dark btn-sm" routerLink="/agendamentos/eventos">
-                <fa-icon [icon]="fasArrowCircleLeft"></fa-icon>
-                Voltar
-            </button>
-            <full-calendar defaultView="dayGridMonth" [plugins]="calendarPlugins" locale="pt-br" [header]=" { left: 'prev,next today', center: 'title', right: 'dayGridMonth,dayGridWeek,dayGridDay' } " [events]="[ { title: 'teste', start:
-                    '2020-02-22T12:30:00', end: '2020-02-25T13:30:00' } ] "></full-calendar>
+            <ng-container *ngIf="isCharging===false; else charging">
+                <button type="button" class="btn btn-dark btn-sm" routerLink="/agendamentos/eventos">
+                    <fa-icon [icon]="fasArrowCircleLeft"></fa-icon>
+                    Voltar
+                </button>
+                <full-calendar defaultView="dayGridMonth" [plugins]="calendarPlugins" locale="pt-br" [header]=" { left: 'prev,next today', center: 'title', right: 'dayGridMonth,dayGridWeek,dayGridDay' } " [events]="events"></full-calendar>
+            </ng-container>
+            <ng-template #charging>
+                <div class="d-flex justify-content-center">
+                    <div class="spinner-border text-dark" role="status">
+                        <span class="sr-only">Carregando...</span>
+                    </div>
+                </div>
+            </ng-template>
         </div>
     </div>
 </div>

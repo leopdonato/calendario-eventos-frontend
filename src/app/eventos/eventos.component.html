@@ -41,7 +41,9 @@
             </ng-container>
             <ng-template #mostrarVazio>
                 <div class="card text-white bg-info mb-3">
-                    <div class="card-header">Xiiii...<i class="far fa-frown fa-2x ml-2"></i></div>
+                    <div class="card-header">Xiiii...
+                        <fa-icon [icon]="farFrown" size="2x"></fa-icon>
+                    </div>
                     <div class="card-body">
                         <h5 class="card-title">Ainda não há eventos cadastrados!</h5>
                         <p class="card-text">Clique no botão acima e adicione um novo evento em seu calendário.</p>

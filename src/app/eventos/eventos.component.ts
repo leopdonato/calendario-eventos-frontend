@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { EventosService } from '../services/eventos.service';
 import { EventosModel } from '../models/eventos.model';
-import { faCalendarPlus, faCalendarTimes, faEdit } from '@fortawesome/free-regular-svg-icons';
+import { faCalendarPlus, faCalendarTimes, faEdit, faFrown } from '@fortawesome/free-regular-svg-icons';
 import { faCalendarDay } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -23,6 +23,7 @@ export class EventosComponent implements OnInit {
   public farCalendarTimes = faCalendarTimes;
   public farEdit = faEdit;
   public fasCalendarDay = faCalendarDay;
+  public farFrown = faFrown;
 
   @ViewChild('excluirComponent', { static: false }) excluirComponent: any;
 
