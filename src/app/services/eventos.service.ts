@@ -9,13 +9,6 @@ import { TokenService } from './token.service';
 })
 export class EventosService {
 
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type':  'application/json',
-      'Authorization': this.getToken()
-    })
-  };
-
   constructor(
     private http: HttpClient,
     private tokenService: TokenService
@@ -26,23 +19,48 @@ export class EventosService {
   }
 
   findAll(): Observable<EventosModel[]>{
-    return this.http.get<EventosModel[]>('http://localhost:8080/eventos', this.httpOptions);
+    return this.http.get<EventosModel[]>('http://localhost:8080/eventos', {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': this.getToken()
+      })
+    });
   }
 
   insert(obj: EventosModel): Observable<EventosModel> {
-    return this.http.post<EventosModel>('http://localhost:8080/eventos', obj, this.httpOptions);
+    return this.http.post<EventosModel>('http://localhost:8080/eventos', obj, {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': this.getToken()
+      })
+    });
   }
 
   delete(id: number): Observable<EventosModel> {
-    return this.http.delete<EventosModel>(`http://localhost:8080/eventos/${id}`, this.httpOptions);
+    return this.http.delete<EventosModel>(`http://localhost:8080/eventos/${id}`, {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': this.getToken()
+      })
+    });
   }
   
   findById(id: number): Observable<EventosModel> {
-    return this.http.get<EventosModel>(`http://localhost:8080/eventos/${id}`, this.httpOptions);
+    return this.http.get<EventosModel>(`http://localhost:8080/eventos/${id}`, {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': this.getToken()
+      })
+    });
   }
 
   edit(id: number, obj: EventosModel): Observable<EventosModel> {
-    return this.http.put<EventosModel>(`http://localhost:8080/eventos/${id}`, obj, this.httpOptions);
+    return this.http.put<EventosModel>(`http://localhost:8080/eventos/${id}`, obj, {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': this.getToken()
+      })
+    });
   }
 
 }
