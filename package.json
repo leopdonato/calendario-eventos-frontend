@@ -27,7 +27,7 @@
     "@fullcalendar/core": "^4.4.0",
     "@fullcalendar/daygrid": "^4.4.0",
     "bootstrap": "^4.4.1",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "jwt-decode": "^2.2.0",
     "ngx-mask": "^8.1.7",
     "ngx-pagination": "^5.0.0",
